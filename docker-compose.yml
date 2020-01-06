@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  ops:
+    build: .
+    image: darwinianetwork/ops
+    environment:
+      CONSUL_ADDRESS: consul-server-1
+      MONITOR_HOST: monitor:24855
+      CLIENT_NODE_NAME: 'finish_holy'
+      CLIENT_NODE_PORT: 20222
+      CLIENT_NODE_KEY: '0x46e06a6d52fe3508babe698fca9e403bebb09059d2e0bd64d174bc6c114b3557'
+    volumes:
+      - ./config.json:/app/config.json
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: "python client.py start"
+    networks:
+      - substrate-ops
+
+
+networks:
+  substrate-ops:
+    external: true
