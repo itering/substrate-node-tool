@@ -2,6 +2,14 @@
 
 ！当前代码基于python3编写，不支持python2
 
+## Features
+
+- docker 容器一键部署
+- 节点启动自动获取所有bootnodes
+- 遇到节点同步问题自动重启
+- 支持分布式集群
+- 可接入钉钉talk 机器人进行alert 报警
+
 ## 部署consul
 
 [consul.io] https://www.consul.io/docs/install/index.html
