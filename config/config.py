@@ -90,9 +90,9 @@ def trim_hex(s):
 
 def auto_insert_boot_nodes(conf):
     print("Start discover boot_nodes")
-    boot = boot_nodes.Boot()
-    nodes = boot.run(conf["substrate"]["network"])
-    conf["substrate"]["boot_nodes"].extend(nodes)
+    # boot = boot_nodes.Boot()
+    # nodes = boot.run(conf["substrate"]["network"])
+    # conf["substrate"]["boot_nodes"].extend(nodes)
     conf["substrate"]["boot_nodes"] = unique_boot_node(conf["substrate"]["boot_nodes"])
     return conf
 
