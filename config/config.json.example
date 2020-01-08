@@ -3,7 +3,7 @@
     "pid": "/tmp/glue.pid",
     "monitor_interval": 1,
     "session_key": "glue",
-    "debug": true,
+    "debug": true
   },
   "consul": {
     "port": 8500,
