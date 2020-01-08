@@ -34,7 +34,7 @@ class Boot:
         block_height = 0
         for i in range(0, 3):
             j = json.loads(ws.recv())
-            if j[0] != 0:
+            if type(j) == list and len(j) > 0 and j[0] != 0:
                 for index in range(len(j)):
                     if j[index] == 1:
                         block_height = j[index + 1][0]
