@@ -283,7 +283,7 @@ class Monitor(multiprocessing.Process):
         if len(self._app_cfg['substrate']['node_key']) > 0:
             identity_key = "--node-key %s" % self._app_cfg['substrate']['node_key']
 
-        command = "{base_path} {port} {name} --rpc-external --ws-external --rpc-cors=all --{telemetry_url} {boot_nodes} {identity_key}".format(
+        command = "{base_path} {port} {name} --rpc-cors=all --{telemetry_url} {boot_nodes} {identity_key}".format(
             base_path=base_path_str,
             port=port_str,
             name=name_str,
@@ -294,6 +294,10 @@ class Monitor(multiprocessing.Process):
 
         if validator:
             command = command + " --validator"
+        else:
+            # --rpc-external and --ws-external options shouldn\'t be used if the node is running as a validator.
+            # Use `--unsafe-rpc-external` if you understand the risks.
+            command = command + "--rpc-external --ws-external"
         self._app_docker_instance = self._app_docker_client.containers.run(
             image=image,
             name=name,
