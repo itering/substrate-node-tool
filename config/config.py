@@ -16,18 +16,8 @@ schema = {
                 "monitor_interval": {"type": "number"},
                 "session_key": {"type": "string", "minLength": 1},
                 "debug": {"type": "boolean"},
-                "log_dir": {"type": "string"},
             },
             "required": ["pid", "monitor_interval", "session_key"]
-        },
-        "consul": {
-            "type": "object",
-            "properties": {
-                "port": {"type": "number"},
-                "client": {"type": "string", "minLength": 1},
-                "node_key": {"type": "string"},
-            },
-            "required": ["port", "client"]
         },
         "substrate": {
             "type": "object",
@@ -36,12 +26,9 @@ schema = {
                 "image": {"type": "string", "minLength": 1},
                 "network": {"type": "string", "minLength": 1},
                 "port": {"type": "number"},
-                "base_path": {"type": "string"},
-                "telemetry_url": {"type": "array"},
-                "monitor_host": {"type": "string", "minLength": 1},
-                "boot_nodes": {"type": "array", "minItems": 1},
+                "base_path": {"type": "string"}
             },
-            "required": ["image", "monitor_host", "id", "port", "network"]
+            "required": ["image", "id", "port", "network", "base_path"]
         },
     },
 }
@@ -67,18 +54,13 @@ def check_and_read_config(_cfg):
 
 
 def merge_env_with_conf(conf):
-    if "CONSUL_ADDRESS" in os.environ:
-        conf["consul"]["client"] = os.getenv("CONSUL_ADDRESS")
     if "CLIENT_NODE_NAME" in os.environ:
         conf["substrate"]["id"] = os.getenv("CLIENT_NODE_NAME")
-    if "MONITOR_HOST" in os.environ:
-        conf["substrate"]["monitor_host"] = os.getenv("MONITOR_HOST")
     if "CLIENT_NODE_PORT" in os.environ:
         conf["substrate"]["port"] = int(os.getenv("CLIENT_NODE_PORT"))
     if "CLIENT_NODE_KEY" in os.environ:
         conf["substrate"]["node_key"] = os.getenv("CLIENT_NODE_KEY")
     conf["substrate"]["node_key"] = trim_hex(conf["substrate"]["node_key"])
-    conf["substrate"]["key_path"] = os.getcwd() + '/sub_key'
     return conf
 
 
