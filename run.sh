@@ -6,11 +6,11 @@ function build(){
 }
 
 function run(){
-     docker-compose -f docker-compose.ops.yml up -d &&  docker-compose up -d
+    docker-compose up -d
 }
 
 function stop(){
-     docker-compose -f docker-compose.ops.yml down &&  docker-compose down
+     docker-compose down
 }
 
 if [[ "$1" == "" ]]; then

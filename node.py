@@ -12,8 +12,6 @@ from docker import errors as docker_errors
 from requests.exceptions import ReadTimeout
 import requests
 
-node_status = ["stop", "booting", "starting", "stopping", "running", "failed"]
-
 
 class Monitor(multiprocessing.Process):
     _app_cfg = None
@@ -25,6 +23,8 @@ class Monitor(multiprocessing.Process):
         "status": "stop",
         "heartbeat": 0,
     }
+    last_block_num = 0
+    prometheus_host = "127.0.0.1"
 
     def __init__(self, cfg: dict, debug=False, *args, **kwargs):
         self.cfg = cfg
@@ -64,6 +64,7 @@ class Monitor(multiprocessing.Process):
 
         if os.getenv("DOCKER_MODE") == "True":
             self._app_docker_client = docker.DockerClient(base_url='unix://var/run/docker.sock')
+            self.prometheus_host = self._app_cfg['substrate']['id']
         else:
             self._app_docker_client = docker.from_env()
 
@@ -117,19 +118,20 @@ class Monitor(multiprocessing.Process):
                     _try += 1
         return False
 
+    def _app_add_network(self):
+        dc = self._app_docker_client
+        try:
+            dc.networks.get("substrate-ops")
+        except docker_errors.NotFound:
+            dc.networks.create("substrate-ops")
+
     def _app_start_container(self, validator=False):
         image = self._app_cfg['substrate']['image']
         self._app_docker_pull_image(image)
+        self._app_add_network()
 
         name = self._app_cfg['substrate']['id']
         name_str = '--name %s' % name
-
-        telemetry_url = "--telemetry-url ws://%s/socket/%s" % (
-            str(self._app_cfg['substrate']['monitor_host']).rstrip('/'),
-            self._app_cfg['substrate']['id']
-        )
-        for _t in self._app_cfg['substrate']['telemetry_url']:
-            telemetry_url += " %s" % _t
 
         base_path = dict()
         _path = self._app_cfg['substrate']['base_path']
@@ -139,6 +141,7 @@ class Monitor(multiprocessing.Process):
         _port = self._app_cfg['substrate']['port']
         ports = dict()
         ports['9944/tcp'] = 9944
+        ports['9615/tcp'] = 9615
         ports['%d/tcp' % _port] = _port
         port_str = '--port %s' % _port
 
@@ -163,7 +166,8 @@ class Monitor(multiprocessing.Process):
         else:
             # --rpc-external and --ws-external options shouldn\'t be used if the node is running as a validator.
             # Use `--unsafe-rpc-external` if you understand the risks.
-            command = command + "--rpc-external --ws-external"
+            command = command + " --rpc-external --ws-external"
+
         self._app_docker_instance = self._app_docker_client.containers.run(
             image=image,
             name=name,
@@ -186,13 +190,26 @@ class Monitor(multiprocessing.Process):
         return self._app_docker_instance.status == 'running'
 
     def _app_is_validator_working(self):
-        while True:
-            try:
-                url = 'http://127.0.0.1:9615'
-                status = requests.get(url).json()['data']
-                break
-            except requests.exceptions.ConnectionError:
-                return False
+        try:
+            url = "http://{prometheus}:9615/metrics".format(prometheus=self.prometheus_host)
+            metrics = requests.get(url).text.split("\n")
+            current = 0
+            for index, v in enumerate(metrics):
+                metric = v.split(" ")
+                if metric[0] == 'darwinia_block_height{status="best"}':
+                    current = metric[1]
+                    break
+            print(self.last_block_num, current)
+            status = int(current) > self.last_block_num
+
+            self.last_block_num = int(current)
+            return status
+        except requests.exceptions.ConnectionError:
+            print(requests.exceptions.ConnectionError)
+            return False
+        except Exception as e:
+            print(e)
+            return False
 
     def terminate(self, *args, **kwargs):
         print('%s收到退出请求' % os.getpid())
@@ -213,11 +230,17 @@ class Monitor(multiprocessing.Process):
             while True:
                 d('同步节点状态')
                 if self._app_is_container_running():
-                    # 获取节点状态
-                    if self._app_is_validator_working():
+                    if not self._app_is_validator_working():
+                        d('节点同步不正常')
                         self._app_stop_container()
+                    else:
+                        d('节点同步正常！！！')
                 else:
-                    self._app_start_container()
-                time.sleep(10000)
+                    d('container start')
+                    self._app_start_container(self._app_cfg['substrate']['validator'])
+                    d('container start success')
+                time.sleep(50)
         except Exception as e:
+            print(e)
+            time.sleep(10)
             raise e

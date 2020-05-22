@@ -60,6 +60,8 @@ def merge_env_with_conf(conf):
         conf["substrate"]["port"] = int(os.getenv("CLIENT_NODE_PORT"))
     if "CLIENT_NODE_KEY" in os.environ:
         conf["substrate"]["node_key"] = os.getenv("CLIENT_NODE_KEY")
+    if "CLIENT_VALIDATOR" in os.environ:
+        conf["substrate"]["validator"] = os.getenv("CLIENT_VALIDATOR") == "true"
     conf["substrate"]["node_key"] = trim_hex(conf["substrate"]["node_key"])
     return conf
 
