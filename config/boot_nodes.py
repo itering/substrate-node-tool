@@ -1,6 +1,5 @@
 from websocket import create_connection
 import ssl
-import json
 
 import requests
 from multiprocessing.dummy import Pool
@@ -16,9 +15,9 @@ class Boot:
         self.network = ""
 
         self.network_dict = {
-            "": "Darwinia IceFrog Testnet",
+            "": "Crab",
             "kusama": "Kusama CC3",
-            "darwinia": "Darwinia IceFrog Testnet"
+            "darwinia": "Crab"
         }
 
     def run(self, network):
@@ -30,24 +29,12 @@ class Boot:
 
         subscribe_topic = "subscribe:%s" % self.network_dict[network]
         ws.send(subscribe_topic)
-        boot_nodes = []
-        block_height = 0
-        for i in range(0, 3):
-            j = json.loads(ws.recv())
-            if type(j) == list and len(j) > 0 and j[0] != 0:
-                for index in range(len(j)):
-                    if j[index] == 1:
-                        block_height = j[index + 1][0]
-                    elif j[index] == 3:
-                        if j[index + 1][4][0] == block_height:
-                            boot_nodes.append(j[index + 1][0])
 
-        ws.close()
         t = threading.Thread()
         t.setDaemon(True)
         t.start()
 
-        self.pool.map(self._put_queue, list(boot_nodes))
+        self.pool.map(self._put_queue, list(range(0, 50)))
         while self.queue.empty() is False:
             node_id = self.queue.get()
             self.pool.map_async(self._get_url, [node_id])
@@ -59,9 +46,12 @@ class Boot:
         self.queue.put(node_id)
 
     def _get_url(self, node_id):
-        j = requests.get(
+        c = requests.get(
             url="https://telemetry.polkadot.io/network_state/%s/%d" % (self.network_dict[self.network], node_id),
-            timeout=3).json()
+            timeout=3)
+        if c.content == b'Node has disconnected or has not submitted its network state yet':
+            return
+        j = c.json()
         address = list(filter(lambda x:
                               x[5:].startswith("10") is False and
                               x[5:].startswith("172") is False and
