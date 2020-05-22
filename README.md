@@ -42,7 +42,7 @@ cp config.json.example config.json
     "image": "darwinianetwork/darwinia:release-v0.5.7",
     "node_key": "0x46e06a6d52fe3508babe698fca9e403bebb09059d2e0bd64d174bc6c114b3557",
     "port": 20222,
-    "base_path": "/Users/sunbobin/opts/darwinia-ops/data",
+    "base_path": "opts/darwinia-ops/data",
     "boot_nodes": [],
     "validator": "true"
   }
