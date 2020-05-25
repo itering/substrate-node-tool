@@ -1,13 +1,12 @@
 # substrate Ops Tools
 
-！当前代码基于python3编写，不支持python2
-
 ## Features
 
 - docker 容器一键部署
 - 节点启动自动获取所有bootnodes
 - 遇到节点同步问题自动重启
 - 可接入钉钉talk 机器人进行alert 报警
+- 可自动检测最新的节点docker images
 
 
 ## 配置
@@ -15,6 +14,7 @@
 配置虚拟环境
 
 ```bash
+python3 -m pip install --user virtualenv
 python3 -m venv venv
 . venv/bin/activate
 pip install -r requirements.txt
@@ -44,7 +44,8 @@ cp config.json.example config.json
     "port": 20222,
     "base_path": "opts/darwinia-ops/data",
     "boot_nodes": [],
-    "validator": "true"
+    "validator": "true",
+    "auto_use_latest":"false",
   }
 }
 ```
@@ -61,16 +62,19 @@ cp config.json.example config.json
 - image: docker镜像
 - port: p2p网络运行端口
 - base_path: 数据保存路径
-- telemetry_url: telemetry url 数组
 - boot_nodes(可选): boot_nodes 数组
 - node_key(可选): 节点启动后唯一标示符(ed25519)
+- validator: 是否跑验证人节点
+- auto_use_latest: 是否使用最新tag的image  
 
 ## 启动进程
-    python glue.py start
+
+    python client.py start
 
 
 ## 关闭进程
-    python glue.py stop
+
+    python client.py stop
     
 
 ## 系统输出的日志

@@ -24,7 +24,10 @@ def cli(ctx, conf):
 @cli.command()
 @click.pass_context
 def start(ctx):
+    # auto fetch boot nodes
     ctx.obj['cfg'] = config.auto_insert_boot_nodes(ctx.obj['cfg'])
+    # find out latest image tag
+    ctx.obj['cfg'] = config.check_image_latest_version(ctx.obj['cfg'])
     start_daemon(ctx.obj['pid'], ctx.obj['cfg'])
 
 
