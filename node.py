@@ -17,7 +17,6 @@ class Monitor(multiprocessing.Process):
     _app_cfg = None
     _app_docker_client = None
     _app_docker_instance = None
-    _app_consul = None
     _app_status = {
         "id": None,
         "status": "stop",
