@@ -16,7 +16,7 @@ import requests
 class Monitor(multiprocessing.Process):
     _app_cfg = None
     _app_docker_client = None
-    _app_docker_instance = None
+    _app_docker_instance = {}
     _app_status = {
         "id": None,
         "status": "stop",
@@ -58,21 +58,12 @@ class Monitor(multiprocessing.Process):
             raise RuntimeError('cfg not defined')
 
     def _app_node_init(self):
-        # 先验证节点是否启动
-        my_id = self._app_cfg['substrate']['id']
-
         if os.getenv("DOCKER_MODE") == "True":
             self._app_docker_client = docker.DockerClient(base_url='unix://var/run/docker.sock')
-            self.prometheus_host = self._app_cfg['substrate']['id']
         else:
             self._app_docker_client = docker.from_env()
-
         self._debug = self._app_cfg['global']['debug']
-
-        self._app_status['id'] = my_id
-        self._app_status['status'] = 'booting'
-        self._app_status['heartbeat'] = int(time.time())
-        self._app_session_name = "glue_%s" % self._app_cfg['substrate']['id']
+        self._app_session_name = "glue_%s" % self._app_cfg['substrate'][0]['id']
         self._app_session_key = self._app_cfg['global']['session_key']
 
     def _app_docker_pull_image(self, image):
@@ -83,32 +74,35 @@ class Monitor(multiprocessing.Process):
             self._d('Download %s' % image)
             dc.images.pull(image)
 
-    def _app_stop_container(self, timeout=30, force=False):
-        # self._app_change_status('stopping')
+    def _app_stop_container(self, node, timeout=30, force=False):
         d = self._d
-        if self._app_is_container_running() and self._app_docker_instance:
-            d('容器在运行')
-            if force:
-                d('强制关闭，kill容器')
-                self._app_docker_instance.kill()
-            else:
-                self._app_docker_instance.stop()
-                if not self._app_waiting_container_offline(timeout=timeout):
-                    d('关闭等待超时，强制关闭')
-                    self._app_stop_container(force=True)
-        if self._app_docker_instance:
-            self._app_waiting_container_offline()
-            d('移除容器')
-            self._app_docker_instance.remove()
-            self._app_docker_instance = None
+        name = node['id']
+        if name not in self._app_docker_instance:
+            return
 
-    def _app_waiting_container_offline(self, retry=3, timeout=30):
+        if self._app_is_container_running(node):
+            d('container alive')
+            if force:
+                d('force kill')
+                self._app_docker_instance[name].kill()
+            else:
+                self._app_docker_instance[name].stop()
+                if not self._app_waiting_container_offline(node, timeout=timeout):
+                    d('timeout, force kill')
+                    self._app_stop_container(node, force=True)
+
+        self._app_waiting_container_offline(node)
+        d('remove container')
+        self._app_docker_instance[name].remove()
+        del self._app_docker_instance[name]
+
+    def _app_waiting_container_offline(self, node, retry=3, timeout=30):
         _try = 0
-        if self._app_docker_instance:
+        if node['id'] in self._app_docker_instance:
             while _try < retry:
                 try:
-                    self._d('第%d次等待关闭' % (_try + 1))
-                    rt = self._app_docker_instance.wait(
+                    self._d('waiting %d time close' % (_try + 1))
+                    rt = self._app_docker_instance[node['id']].wait(
                         timeout=timeout
                     )
                     self._d('stop return: %s' % rt)
@@ -124,50 +118,49 @@ class Monitor(multiprocessing.Process):
         except docker_errors.NotFound:
             dc.networks.create("substrate-ops")
 
-    def _app_start_container(self, validator=False):
-        image = self._app_cfg['substrate']['image']
+    def _app_start_container(self, node):
+        image = node['image']
         self._app_docker_pull_image(image)
         self._app_add_network()
 
-        name = self._app_cfg['substrate']['id']
+        name = node['id']
         name_str = '--name %s' % name
 
         base_path = dict()
-        _path = self._app_cfg['substrate']['base_path']
+        _path = node['base_path']
         base_path[_path] = {'bind': _path, 'mode': 'rw'}
         base_path_str = "--base-path %s" % _path
 
-        _port = self._app_cfg['substrate']['port']
+        # port map
         ports = dict()
-        ports['9944/tcp'] = 9944
-        ports['9615/tcp'] = 9615
-        ports['%d/tcp' % _port] = _port
-        port_str = '--port %s' % _port
+        ports['9944/tcp'] = node['ws_port']
+        ports['9615/tcp'] = node['prometheus_port']
 
         boot_nodes = ""
-        if len(self._app_cfg['substrate']['boot_nodes']) > 0:
-            boot_nodes = "--bootnodes %s" % " ".join(self._app_cfg['substrate']['boot_nodes'])
+        if ('boot_nodes' in node) and len(node['boot_nodes']) > 0:
+            boot_nodes = "--bootnodes %s" % " ".join(node['boot_nodes'])
 
         identity_key = ""
-        if len(self._app_cfg['substrate']['node_key']) > 0:
-            identity_key = "--node-key %s" % self._app_cfg['substrate']['node_key']
+        if 'node_key' in node:
+            identity_key = "--node-key %s" % node['node_key']
 
-        command = "{base_path} {port} {name} --rpc-cors=all {boot_nodes} {identity_key} --prometheus-external".format(
+        command = "{base_path} {name} --rpc-cors=all {boot_nodes} {identity_key} --prometheus-external {ws_port} {prometheus_port}".format(
             base_path=base_path_str,
-            port=port_str,
             name=name_str,
             boot_nodes=boot_nodes,
             identity_key=identity_key,
+            ws_port="--ws-port %d" % ports['9944/tcp'],
+            prometheus_port="--prometheus-port %d" % ports['9615/tcp'],
         )
 
-        if validator:
+        if node['validator']:
             command = command + " --validator"
         else:
             # --rpc-external and --ws-external options shouldn\'t be used if the node is running as a validator.
             # Use `--unsafe-rpc-external` if you understand the risks.
             command = command + " --rpc-external --ws-external"
 
-        self._app_docker_instance = self._app_docker_client.containers.run(
+        self._app_docker_instance[name] = self._app_docker_client.containers.run(
             image=image,
             name=name,
             ports=ports,
@@ -177,25 +170,33 @@ class Monitor(multiprocessing.Process):
             network='substrate-ops'
         )
 
-    def _app_is_container_running(self):
-        if self._app_docker_instance is None:
-            c_name = self._app_cfg['substrate']['id']
+    def _app_is_container_running(self, node):
+        c_name = node['id']
+
+        if (c_name in self._app_docker_instance) is False:
             try:
-                self._app_docker_instance = self._app_docker_client.containers.get(c_name)
-                return self._app_docker_instance.status == 'running'
+                self._app_docker_instance[c_name] = self._app_docker_client.containers.get(c_name)
+                return self._app_docker_instance[c_name].status == 'running'
             except docker_errors.NotFound:
                 return False
-        self._app_docker_instance.reload()
-        return self._app_docker_instance.status == 'running'
+        else:
+            self._app_docker_instance[c_name].reload()
+            return self._app_docker_instance[c_name].status == 'running'
 
-    def _app_is_validator_working(self):
+    def _app_is_validator_working(self, node):
+
+        if os.getenv("DOCKER_MODE") == "True":
+            prometheus_host = node['id']
+        else:
+            prometheus_host = '127.0.0.1'
+
         try:
-            url = "http://{prometheus}:9615/metrics".format(prometheus=self.prometheus_host)
+            url = "http://{prometheus}:9615/metrics".format(prometheus=prometheus_host)
             metrics = requests.get(url).text.split("\n")
             current = 0
             for index, v in enumerate(metrics):
                 metric = v.split(" ")
-                if metric[0] == 'darwinia_block_height{status="best"}':
+                if metric[0] == node['prometheus_metrics']:
                     current = metric[1]
                     break
             print(self.last_block_num, current)
@@ -211,33 +212,34 @@ class Monitor(multiprocessing.Process):
             return False
 
     def terminate(self, *args, **kwargs):
-        print('%s收到退出请求' % os.getpid())
+        print('%s receive process exit signal' % os.getpid())
         sys.stdout.flush()
-        if self._app_docker_instance:
-            self._app_stop_container()
+        for node in self._app_cfg["substrate"]:
+            self._app_stop_container(node)
 
         raise SystemExit(0)
 
     def run(self):
         signal.signal(signal.SIGTERM, self.terminate)
-        d = self._d
-        d('初始化启动')
+
+        self._d('client start')
         self._app_check()
         self._app_node_init()
 
         try:
             while True:
-                d('同步节点状态')
-                if self._app_is_container_running():
-                    if not self._app_is_validator_working():
-                        d('节点同步不正常')
-                        self._app_stop_container()
+                self._d('get node status')
+                for node in self._app_cfg["substrate"]:
+                    if self._app_is_container_running(node):
+                        if not self._app_is_validator_working(node):
+                            self._d('node sync unusual')
+                            self._app_stop_container(node)
+                        else:
+                            self._d('node sync well!!!!')
                     else:
-                        d('节点同步正常！！！')
-                else:
-                    d('container start')
-                    self._app_start_container(self._app_cfg['substrate']['validator'])
-                    d('container start success')
+                        self._d('container start')
+                        self._app_start_container(node)
+                        self._d('container start success')
                 time.sleep(50)
         except Exception as e:
             print(e)

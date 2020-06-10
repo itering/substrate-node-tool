@@ -1,0 +1,667 @@
+polkadot_block_height{status="best"} 2554500
+polkadot_block_height{status="finalized"} 2554498
+polkadot_block_height{status="sync_target"} 2554500
+# HELP polkadot_build_info A metric with a constant '1' value labeled by name, version
+# TYPE polkadot_build_info gauge
+polkadot_build_info{name="subscan",version="0.7.32-fa1536c9-x86_64-linux-gnu"} 1
+# HELP polkadot_cpu_usage_percentage Node CPU usage
+# TYPE polkadot_cpu_usage_percentage gauge
+polkadot_cpu_usage_percentage 118.34677124023438
+# HELP polkadot_database_cache_bytes RocksDB cache size in bytes
+# TYPE polkadot_database_cache_bytes gauge
+polkadot_database_cache_bytes 0
+# HELP polkadot_finality_grandpa_communication_gossip_validator_messages Number of messages validated by the finality grandpa gossip validator.
+# TYPE polkadot_finality_grandpa_communication_gossip_validator_messages counter
+polkadot_finality_grandpa_communication_gossip_validator_messages{action="discard",message="catch_up_request"} 1
+polkadot_finality_grandpa_communication_gossip_validator_messages{action="discard",message="commit"} 127337
+polkadot_finality_grandpa_communication_gossip_validator_messages{action="discard",message="neighbor"} 713320
+polkadot_finality_grandpa_communication_gossip_validator_messages{action="discard",message="vote"} 1206779
+polkadot_finality_grandpa_communication_gossip_validator_messages{action="keep",message="vote"} 3959560
+polkadot_finality_grandpa_communication_gossip_validator_messages{action="process_and_discard",message="catch_up"} 5214
+polkadot_finality_grandpa_communication_gossip_validator_messages{action="process_and_discard",message="commit"} 12609
+# HELP polkadot_finality_grandpa_round Highest completed GRANDPA round.
+# TYPE polkadot_finality_grandpa_round gauge
+polkadot_finality_grandpa_round 2138
+# HELP polkadot_finality_grandpa_until_imported_waiting_messages_number Number of finality grandpa messages waiting within the until imported queue.
+# TYPE polkadot_finality_grandpa_until_imported_waiting_messages_number gauge
+polkadot_finality_grandpa_until_imported_waiting_messages_number 0
+# HELP polkadot_import_queue_blocks_submitted Number of blocks submitted to the import queue.
+# TYPE polkadot_import_queue_blocks_submitted counter
+polkadot_import_queue_blocks_submitted 89371
+# HELP polkadot_import_queue_finality_proofs_submitted Number of finality proofs submitted to the import queue.
+# TYPE polkadot_import_queue_finality_proofs_submitted counter
+polkadot_import_queue_finality_proofs_submitted 0
+# HELP polkadot_import_queue_justifications_submitted Number of justifications submitted to the import queue.
+# TYPE polkadot_import_queue_justifications_submitted counter
+polkadot_import_queue_justifications_submitted 4
+# HELP polkadot_issued_light_requests Number of light client requests that our node has issued.
+# TYPE polkadot_issued_light_requests counter
+polkadot_issued_light_requests 0
+# HELP polkadot_load_avg System load average
+# TYPE polkadot_load_avg gauge
+polkadot_load_avg{over="15min"} 0.68
+polkadot_load_avg{over="1min"} 1.63
+polkadot_load_avg{over="5min"} 0.98
+# HELP polkadot_memory_usage_bytes Node memory (resident set size) usage
+# TYPE polkadot_memory_usage_bytes gauge
+polkadot_memory_usage_bytes 394002432
+# HELP polkadot_netstat_tcp Current TCP connections
+# TYPE polkadot_netstat_tcp gauge
+polkadot_netstat_tcp{status="closed"} 0
+polkadot_netstat_tcp{status="closing"} 0
+polkadot_netstat_tcp{status="established"} 76
+polkadot_netstat_tcp{status="listen"} 7
+polkadot_netstat_tcp{status="other"} 0
+polkadot_netstat_tcp{status="starting"} 0
+# HELP polkadot_network_per_sec_bytes Networking bytes per second
+# TYPE polkadot_network_per_sec_bytes gauge
+polkadot_network_per_sec_bytes{direction="download"} 145331
+polkadot_network_per_sec_bytes{direction="upload"} 85955
+# HELP polkadot_node_roles The roles the node is running as
+# TYPE polkadot_node_roles gauge
+polkadot_node_roles 1
+# HELP polkadot_number_leaves Number of known chain leaves (aka forks)
+# TYPE polkadot_number_leaves gauge
+polkadot_number_leaves 2
+# HELP polkadot_open_file_handles Open file handlers held by the process
+# TYPE polkadot_open_file_handles gauge
+polkadot_open_file_handles{fd_type="anon_inode"} 8
+polkadot_open_file_handles{fd_type="mem"} 0
+polkadot_open_file_handles{fd_type="net"} 0
+polkadot_open_file_handles{fd_type="other"} 0
+polkadot_open_file_handles{fd_type="paths"} 306
+polkadot_open_file_handles{fd_type="pipe"} 18
+polkadot_open_file_handles{fd_type="sockets"} 89
+# HELP polkadot_ready_transactions_number Number of transactions in the ready queue
+# TYPE polkadot_ready_transactions_number gauge
+polkadot_ready_transactions_number 0
+# HELP polkadot_state_cache_bytes State cache size in bytes
+# TYPE polkadot_state_cache_bytes gauge
+polkadot_state_cache_bytes 10049666
+# HELP polkadot_state_db_cache_bytes State DB cache in bytes
+# TYPE polkadot_state_db_cache_bytes gauge
+polkadot_state_db_cache_bytes{subtype="non_canonical"} 168
+polkadot_state_db_cache_bytes{subtype="pinned"} 44
+# HELP polkadot_sub_libp2p_connections_closed_total Total number of connections closed, by reason and direction
+# TYPE polkadot_sub_libp2p_connections_closed_total counter
+polkadot_sub_libp2p_connections_closed_total{direction="in",reason="force-closed"} 26
+polkadot_sub_libp2p_connections_closed_total{direction="in",reason="transport-error"} 41
+polkadot_sub_libp2p_connections_closed_total{direction="out",reason="force-closed"} 1697
+polkadot_sub_libp2p_connections_closed_total{direction="out",reason="ping-timeout"} 33
+polkadot_sub_libp2p_connections_closed_total{direction="out",reason="protocol-error"} 9
+polkadot_sub_libp2p_connections_closed_total{direction="out",reason="transport-error"} 3874
+# HELP polkadot_sub_libp2p_connections_opened_total Total number of connections opened
+# TYPE polkadot_sub_libp2p_connections_opened_total counter
+polkadot_sub_libp2p_connections_opened_total{direction="in"} 67
+polkadot_sub_libp2p_connections_opened_total{direction="out"} 5677
+# HELP polkadot_sub_libp2p_incoming_connections_handshake_errors_total Total number of incoming connections that have failed during the initial handshake
+# TYPE polkadot_sub_libp2p_incoming_connections_handshake_errors_total counter
+polkadot_sub_libp2p_incoming_connections_handshake_errors_total{reason="invalid-peer-id"} 25
+# HELP polkadot_sub_libp2p_incoming_connections_total Total number of incoming connections on the listening sockets
+# TYPE polkadot_sub_libp2p_incoming_connections_total counter
+polkadot_sub_libp2p_incoming_connections_total 92
+# HELP polkadot_sub_libp2p_is_major_syncing Whether the node is performing a major sync or not.
+# TYPE polkadot_sub_libp2p_is_major_syncing gauge
+polkadot_sub_libp2p_is_major_syncing 0
+# HELP polkadot_sub_libp2p_kademlia_random_queries_total Number of random Kademlia queries started
+# TYPE polkadot_sub_libp2p_kademlia_random_queries_total counter
+polkadot_sub_libp2p_kademlia_random_queries_total{protocol="/ipfs/kad/1.0.0"} 18
+polkadot_sub_libp2p_kademlia_random_queries_total{protocol="ksmcc3"} 18
+# HELP polkadot_sub_libp2p_kademlia_records_count Number of records in the Kademlia records store
+# TYPE polkadot_sub_libp2p_kademlia_records_count gauge
+polkadot_sub_libp2p_kademlia_records_count{protocol="/ipfs/kad/1.0.0"} 0
+polkadot_sub_libp2p_kademlia_records_count{protocol="ksmcc3"} 0
+# HELP polkadot_sub_libp2p_kademlia_records_sizes_total Total size of all the records in the Kademlia records store
+# TYPE polkadot_sub_libp2p_kademlia_records_sizes_total gauge
+polkadot_sub_libp2p_kademlia_records_sizes_total{protocol="/ipfs/kad/1.0.0"} 0
+polkadot_sub_libp2p_kademlia_records_sizes_total{protocol="ksmcc3"} 0
+# HELP polkadot_sub_libp2p_kbuckets_num_nodes Number of nodes in the Kademlia k-buckets
+# TYPE polkadot_sub_libp2p_kbuckets_num_nodes gauge
+polkadot_sub_libp2p_kbuckets_num_nodes{protocol="/ipfs/kad/1.0.0"} 123
+polkadot_sub_libp2p_kbuckets_num_nodes{protocol="ksmcc3"} 123
+# HELP polkadot_sub_libp2p_listeners_errors_total Total number of non-fatal errors reported by a listener
+# TYPE polkadot_sub_libp2p_listeners_errors_total counter
+polkadot_sub_libp2p_listeners_errors_total 0
+# HELP polkadot_sub_libp2p_listeners_local_addresses Number of local addresses we're listening on
+# TYPE polkadot_sub_libp2p_listeners_local_addresses gauge
+polkadot_sub_libp2p_listeners_local_addresses 2
+# HELP polkadot_sub_libp2p_network_per_sec_bytes Average bandwidth usage per second
+# TYPE polkadot_sub_libp2p_network_per_sec_bytes gauge
+polkadot_sub_libp2p_network_per_sec_bytes{direction="in"} 132279
+polkadot_sub_libp2p_network_per_sec_bytes{direction="out"} 4995
+# HELP polkadot_sub_libp2p_notifications_queues_size Total size of all the notification queues
+# TYPE polkadot_sub_libp2p_notifications_queues_size histogram
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="0"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="1"} 404037
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="2"} 404038
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="4"} 404038
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="8"} 404038
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="16"} 404038
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="32"} 404038
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="64"} 404038
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="128"} 404038
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="256"} 404038
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="511"} 404038
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="512"} 404038
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/block-announces/1",le="+Inf"} 404038
+polkadot_sub_libp2p_notifications_queues_size_sum{protocol="/ksmcc3/block-announces/1"} 404039
+polkadot_sub_libp2p_notifications_queues_size_count{protocol="/ksmcc3/block-announces/1"} 404038
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="0"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="1"} 47378
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="2"} 47500
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="4"} 47502
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="8"} 47502
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="16"} 47502
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="32"} 47502
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="64"} 47502
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="128"} 47502
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="256"} 47502
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="511"} 47502
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="512"} 47502
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/ksmcc3/transactions/1",le="+Inf"} 47502
+polkadot_sub_libp2p_notifications_queues_size_sum{protocol="/ksmcc3/transactions/1"} 47629
+polkadot_sub_libp2p_notifications_queues_size_count{protocol="/ksmcc3/transactions/1"} 47502
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="0"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="1"} 630273
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="2"} 752432
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="4"} 754007
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="8"} 754282
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="16"} 754285
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="32"} 754285
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="64"} 754285
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="128"} 754285
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="256"} 754285
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="511"} 754285
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="512"} 754285
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/paritytech/grandpa/1",le="+Inf"} 754285
+polkadot_sub_libp2p_notifications_queues_size_sum{protocol="/paritytech/grandpa/1"} 881107
+polkadot_sub_libp2p_notifications_queues_size_count{protocol="/paritytech/grandpa/1"} 754285
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="0"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="1"} 84
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="2"} 84
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="4"} 84
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="8"} 84
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="16"} 84
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="32"} 84
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="64"} 84
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="128"} 84
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="256"} 84
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="511"} 84
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="512"} 84
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/1",le="+Inf"} 84
+polkadot_sub_libp2p_notifications_queues_size_sum{protocol="/polkadot/1"} 84
+polkadot_sub_libp2p_notifications_queues_size_count{protocol="/polkadot/1"} 84
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="0"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="1"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="2"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="4"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="8"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="16"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="32"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="64"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="128"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="256"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="511"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="512"} 0
+polkadot_sub_libp2p_notifications_queues_size_bucket{protocol="/polkadot/legacy/1",le="+Inf"} 0
+polkadot_sub_libp2p_notifications_queues_size_sum{protocol="/polkadot/legacy/1"} 0
+polkadot_sub_libp2p_notifications_queues_size_count{protocol="/polkadot/legacy/1"} 0
+# HELP polkadot_sub_libp2p_notifications_sizes Sizes of the notifications send to and received from all nodes
+# TYPE polkadot_sub_libp2p_notifications_sizes histogram
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="FRNK",le="64"} 713321
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="FRNK",le="256"} 19867910
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="FRNK",le="1024"} 19867910
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="FRNK",le="4096"} 19867910
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="FRNK",le="16384"} 19867910
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="FRNK",le="65536"} 20032761
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="FRNK",le="262144"} 20032763
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="FRNK",le="1048576"} 20032763
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="FRNK",le="+Inf"} 20032763
+polkadot_sub_libp2p_notifications_sizes_sum{direction="in",protocol="FRNK"} 7095153216
+polkadot_sub_libp2p_notifications_sizes_count{direction="in",protocol="FRNK"} 20032763
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot1",le="64"} 82947
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot1",le="256"} 125796
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot1",le="1024"} 125796
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot1",le="4096"} 125796
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot1",le="16384"} 125796
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot1",le="65536"} 125796
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot1",le="262144"} 125796
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot1",le="1048576"} 125796
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot1",le="+Inf"} 125796
+polkadot_sub_libp2p_notifications_sizes_sum{direction="in",protocol="dot1"} 6008556
+polkadot_sub_libp2p_notifications_sizes_count{direction="in",protocol="dot1"} 125796
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot2",le="64"} 95
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot2",le="256"} 95
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot2",le="1024"} 95
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot2",le="4096"} 95
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot2",le="16384"} 95
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot2",le="65536"} 95
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot2",le="262144"} 95
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot2",le="1048576"} 95
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="in",protocol="dot2",le="+Inf"} 95
+polkadot_sub_libp2p_notifications_sizes_sum{direction="in",protocol="dot2"} 570
+polkadot_sub_libp2p_notifications_sizes_count{direction="in",protocol="dot2"} 95
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="FRNK",le="64"} 630312
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="FRNK",le="256"} 653286
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="FRNK",le="1024"} 653286
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="FRNK",le="4096"} 653286
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="FRNK",le="16384"} 653286
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="FRNK",le="65536"} 795555
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="FRNK",le="262144"} 795555
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="FRNK",le="1048576"} 795555
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="FRNK",le="+Inf"} 795555
+polkadot_sub_libp2p_notifications_sizes_sum{direction="out",protocol="FRNK"} 3488866611
+polkadot_sub_libp2p_notifications_sizes_count{direction="out",protocol="FRNK"} 795555
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="dot2",le="64"} 97
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="dot2",le="256"} 97
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="dot2",le="1024"} 97
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="dot2",le="4096"} 97
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="dot2",le="16384"} 97
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="dot2",le="65536"} 97
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="dot2",le="262144"} 97
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="dot2",le="1048576"} 97
+polkadot_sub_libp2p_notifications_sizes_bucket{direction="out",protocol="dot2",le="+Inf"} 97
+polkadot_sub_libp2p_notifications_sizes_sum{direction="out",protocol="dot2"} 582
+polkadot_sub_libp2p_notifications_sizes_count{direction="out",protocol="dot2"} 97
+# HELP polkadot_sub_libp2p_notifications_streams_closed_total Total number of notification substreams that have been closed
+# TYPE polkadot_sub_libp2p_notifications_streams_closed_total counter
+polkadot_sub_libp2p_notifications_streams_closed_total{protocol="FRNK"} 72
+polkadot_sub_libp2p_notifications_streams_closed_total{protocol="dot1"} 72
+polkadot_sub_libp2p_notifications_streams_closed_total{protocol="dot2"} 72
+# HELP polkadot_sub_libp2p_notifications_streams_opened_total Total number of notification substreams that have been opened
+# TYPE polkadot_sub_libp2p_notifications_streams_opened_total counter
+polkadot_sub_libp2p_notifications_streams_opened_total{protocol="FRNK"} 97
+polkadot_sub_libp2p_notifications_streams_opened_total{protocol="dot1"} 97
+polkadot_sub_libp2p_notifications_streams_opened_total{protocol="dot2"} 97
+# HELP polkadot_sub_libp2p_out_events_events_total Number of broadcast network events that have been sent or received across all channels
+# TYPE polkadot_sub_libp2p_out_events_events_total counter
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-[100, 111, 116, 49]",name="network-gossip"} 251592
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-[100, 111, 116, 49]",name="polkadot-network"} 125796
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-[100, 111, 116, 50]",name="network-gossip"} 190
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-[100, 111, 116, 50]",name="polkadot-network"} 95
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-[70, 82, 78, 75]",name="network-gossip"} 40065526
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-[70, 82, 78, 75]",name="polkadot-network"} 20032763
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-closed-[100, 111, 116, 49]",name="network-gossip"} 144
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-closed-[100, 111, 116, 49]",name="polkadot-network"} 72
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-closed-[100, 111, 116, 50]",name="network-gossip"} 144
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-closed-[100, 111, 116, 50]",name="polkadot-network"} 72
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-closed-[70, 82, 78, 75]",name="network-gossip"} 144
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-closed-[70, 82, 78, 75]",name="polkadot-network"} 72
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-open-[100, 111, 116, 49]",name="network-gossip"} 194
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-open-[100, 111, 116, 49]",name="polkadot-network"} 97
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-open-[100, 111, 116, 50]",name="network-gossip"} 194
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-open-[100, 111, 116, 50]",name="polkadot-network"} 97
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-open-[70, 82, 78, 75]",name="network-gossip"} 194
+polkadot_sub_libp2p_out_events_events_total{action="received",event_name="notif-open-[70, 82, 78, 75]",name="polkadot-network"} 97
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-[100, 111, 116, 49]",name="network-gossip"} 251592
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-[100, 111, 116, 49]",name="polkadot-network"} 125796
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-[100, 111, 116, 50]",name="network-gossip"} 190
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-[100, 111, 116, 50]",name="polkadot-network"} 95
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-[70, 82, 78, 75]",name="network-gossip"} 40065526
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-[70, 82, 78, 75]",name="polkadot-network"} 20032763
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-closed-[100, 111, 116, 49]",name="network-gossip"} 144
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-closed-[100, 111, 116, 49]",name="polkadot-network"} 72
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-closed-[100, 111, 116, 50]",name="network-gossip"} 144
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-closed-[100, 111, 116, 50]",name="polkadot-network"} 72
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-closed-[70, 82, 78, 75]",name="network-gossip"} 144
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-closed-[70, 82, 78, 75]",name="polkadot-network"} 72
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-open-[100, 111, 116, 49]",name="network-gossip"} 194
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-open-[100, 111, 116, 49]",name="polkadot-network"} 97
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-open-[100, 111, 116, 50]",name="network-gossip"} 194
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-open-[100, 111, 116, 50]",name="polkadot-network"} 97
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-open-[70, 82, 78, 75]",name="network-gossip"} 194
+polkadot_sub_libp2p_out_events_events_total{action="sent",event_name="notif-open-[70, 82, 78, 75]",name="polkadot-network"} 97
+# HELP polkadot_sub_libp2p_out_events_notifications_sizes Size of notification events that have been sent or received across all channels
+# TYPE polkadot_sub_libp2p_out_events_notifications_sizes counter
+polkadot_sub_libp2p_out_events_notifications_sizes{action="received",name="network-gossip",protocol="FRNK"} 14190306432
+polkadot_sub_libp2p_out_events_notifications_sizes{action="received",name="network-gossip",protocol="dot1"} 12017112
+polkadot_sub_libp2p_out_events_notifications_sizes{action="received",name="network-gossip",protocol="dot2"} 1140
+polkadot_sub_libp2p_out_events_notifications_sizes{action="received",name="polkadot-network",protocol="FRNK"} 7095153216
+polkadot_sub_libp2p_out_events_notifications_sizes{action="received",name="polkadot-network",protocol="dot1"} 6008556
+polkadot_sub_libp2p_out_events_notifications_sizes{action="received",name="polkadot-network",protocol="dot2"} 570
+polkadot_sub_libp2p_out_events_notifications_sizes{action="sent",name="network-gossip",protocol="FRNK"} 14190306432
+polkadot_sub_libp2p_out_events_notifications_sizes{action="sent",name="network-gossip",protocol="dot1"} 12017112
+polkadot_sub_libp2p_out_events_notifications_sizes{action="sent",name="network-gossip",protocol="dot2"} 1140
+polkadot_sub_libp2p_out_events_notifications_sizes{action="sent",name="polkadot-network",protocol="FRNK"} 7095153216
+polkadot_sub_libp2p_out_events_notifications_sizes{action="sent",name="polkadot-network",protocol="dot1"} 6008556
+polkadot_sub_libp2p_out_events_notifications_sizes{action="sent",name="polkadot-network",protocol="dot2"} 570
+# HELP polkadot_sub_libp2p_out_events_num_channels Number of internal active channels that broadcast network events
+# TYPE polkadot_sub_libp2p_out_events_num_channels gauge
+polkadot_sub_libp2p_out_events_num_channels{name="network-gossip"} 2
+polkadot_sub_libp2p_out_events_num_channels{name="polkadot-network"} 1
+# HELP polkadot_sub_libp2p_peers_count Number of network gossip peers
+# TYPE polkadot_sub_libp2p_peers_count gauge
+polkadot_sub_libp2p_peers_count 25
+# HELP polkadot_sub_libp2p_peerset_num_discovered Number of nodes stored in the peerset manager
+# TYPE polkadot_sub_libp2p_peerset_num_discovered gauge
+polkadot_sub_libp2p_peerset_num_discovered 79
+# HELP polkadot_sub_libp2p_peerset_num_requested Number of nodes that the peerset manager wants us to be connected to
+# TYPE polkadot_sub_libp2p_peerset_num_requested gauge
+polkadot_sub_libp2p_peerset_num_requested 25
+# HELP polkadot_sub_libp2p_pending_connections Number of connections in the process of being established
+# TYPE polkadot_sub_libp2p_pending_connections gauge
+polkadot_sub_libp2p_pending_connections 0
+# HELP polkadot_sub_libp2p_pending_connections_errors_total Total number of pending connection errors
+# TYPE polkadot_sub_libp2p_pending_connections_errors_total counter
+polkadot_sub_libp2p_pending_connections_errors_total{reason="invalid-peer-id"} 201
+polkadot_sub_libp2p_pending_connections_errors_total{reason="transport-error"} 4348
+# HELP polkadot_sub_libp2p_requests_in_total Total number of requests received and answered
+# TYPE polkadot_sub_libp2p_requests_in_total histogram
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="0.001"} 17121
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="0.002"} 30028
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="0.004"} 30070
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="0.008"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="0.016"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="0.032"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="0.064"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="0.128"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="0.256"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="0.512"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="1.024"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="2.048"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="4.096"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="8.192"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="16.384"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="32.768"} 30080
+polkadot_sub_libp2p_requests_in_total_bucket{protocol="/ksmcc3/sync/2",le="+Inf"} 30080
+polkadot_sub_libp2p_requests_in_total_sum{protocol="/ksmcc3/sync/2"} 19.17847489999985
+polkadot_sub_libp2p_requests_in_total_count{protocol="/ksmcc3/sync/2"} 30080
+# HELP polkadot_sub_libp2p_requests_out_finished Time between a request's start and finish (successful or not)
+# TYPE polkadot_sub_libp2p_requests_out_finished histogram
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="0.001"} 2
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="0.002"} 2
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="0.004"} 3
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="0.008"} 6
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="0.016"} 8
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="0.032"} 14
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="0.064"} 67
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="0.128"} 1306
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="0.256"} 6364
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="0.512"} 13036
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="1.024"} 47506
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="2.048"} 89425
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="4.096"} 89488
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="8.192"} 89491
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="16.384"} 89491
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="32.768"} 89491
+polkadot_sub_libp2p_requests_out_finished_bucket{protocol="/ksmcc3/sync/2",le="+Inf"} 89491
+polkadot_sub_libp2p_requests_out_finished_sum{protocol="/ksmcc3/sync/2"} 87281.65003950412
+polkadot_sub_libp2p_requests_out_finished_count{protocol="/ksmcc3/sync/2"} 89491
+# HELP polkadot_sub_libp2p_requests_out_started_total Total number of requests emitted
+# TYPE polkadot_sub_libp2p_requests_out_started_total counter
+polkadot_sub_libp2p_requests_out_started_total{protocol="/ksmcc3/sync/2"} 89491
+# HELP polkadot_sub_txpool_validations_finished Total number of transactions that finished validation
+# TYPE polkadot_sub_txpool_validations_finished counter
+polkadot_sub_txpool_validations_finished 27158
+# HELP polkadot_sub_txpool_validations_scheduled Total number of transactions scheduled for validation
+# TYPE polkadot_sub_txpool_validations_scheduled counter
+polkadot_sub_txpool_validations_scheduled 27158
+# HELP polkadot_sync_extra_finality_proofs Number of extra finality proof requests
+# TYPE polkadot_sync_extra_finality_proofs gauge
+polkadot_sync_extra_finality_proofs{status="active"} 0
+polkadot_sync_extra_finality_proofs{status="failed"} 0
+polkadot_sync_extra_finality_proofs{status="importing"} 0
+polkadot_sync_extra_finality_proofs{status="pending"} 0
+# HELP polkadot_sync_extra_justifications Number of extra justifications requests
+# TYPE polkadot_sync_extra_justifications gauge
+polkadot_sync_extra_justifications{status="active"} 0
+polkadot_sync_extra_justifications{status="failed"} 0
+polkadot_sync_extra_justifications{status="importing"} 0
+polkadot_sync_extra_justifications{status="pending"} 0
+# HELP polkadot_sync_fork_targets Number of fork sync targets
+# TYPE polkadot_sync_fork_targets gauge
+polkadot_sync_fork_targets 0
+# HELP polkadot_sync_handshaking_peers Number of newly connected peers
+# TYPE polkadot_sync_handshaking_peers gauge
+polkadot_sync_handshaking_peers 0
+# HELP polkadot_sync_obsolete_requests Number of obsolete requests
+# TYPE polkadot_sync_obsolete_requests gauge
+polkadot_sync_obsolete_requests 0
+# HELP polkadot_sync_peers Number of peers we sync with
+# TYPE polkadot_sync_peers gauge
+polkadot_sync_peers 25
+# HELP polkadot_sync_queued_blocks Number of blocks in import queue
+# TYPE polkadot_sync_queued_blocks gauge
+polkadot_sync_queued_blocks 0
+# HELP polkadot_tasks_ended_total Total number of tasks for which Future::poll has returned Ready(())
+# TYPE polkadot_tasks_ended_total counter
+polkadot_tasks_ended_total{task_name="extrinsic-import"} 27158
+polkadot_tasks_ended_total{task_name="grandpa-voter"} 0
+polkadot_tasks_ended_total{task_name="import-queue-worker"} 0
+polkadot_tasks_ended_total{task_name="libp2p-node"} 10254
+polkadot_tasks_ended_total{task_name="network-worker"} 0
+polkadot_tasks_ended_total{task_name="prometheus-endpoint"} 0
+polkadot_tasks_ended_total{task_name="telemetry-on-block"} 0
+polkadot_tasks_ended_total{task_name="telemetry-periodic-network-state"} 0
+polkadot_tasks_ended_total{task_name="telemetry-periodic-send"} 0
+polkadot_tasks_ended_total{task_name="telemetry-worker"} 0
+polkadot_tasks_ended_total{task_name="txpool-and-offchain-notif"} 0
+polkadot_tasks_ended_total{task_name="txpool-background"} 0
+polkadot_tasks_ended_total{task_name="txpool-maintain"} 28773
+polkadot_tasks_ended_total{task_name="unamed"} 248
+polkadot_tasks_ended_total{task_name="unnamed"} 56
+# HELP polkadot_tasks_polling_duration Duration in seconds of each invocation of Future::poll
+# TYPE polkadot_tasks_polling_duration histogram
+polkadot_tasks_polling_duration_bucket{task_name="extrinsic-import",le="0.001"} 50374
+polkadot_tasks_polling_duration_bucket{task_name="extrinsic-import",le="0.004"} 50387
+polkadot_tasks_polling_duration_bucket{task_name="extrinsic-import",le="0.016"} 50395
+polkadot_tasks_polling_duration_bucket{task_name="extrinsic-import",le="0.064"} 50399
+polkadot_tasks_polling_duration_bucket{task_name="extrinsic-import",le="0.256"} 50399
+polkadot_tasks_polling_duration_bucket{task_name="extrinsic-import",le="1.024"} 50399
+polkadot_tasks_polling_duration_bucket{task_name="extrinsic-import",le="4.096"} 50399
+polkadot_tasks_polling_duration_bucket{task_name="extrinsic-import",le="16.384"} 50399
+polkadot_tasks_polling_duration_bucket{task_name="extrinsic-import",le="65.536"} 50399
+polkadot_tasks_polling_duration_bucket{task_name="extrinsic-import",le="+Inf"} 50399
+polkadot_tasks_polling_duration_sum{task_name="extrinsic-import"} 1.980982779000004
+polkadot_tasks_polling_duration_count{task_name="extrinsic-import"} 50399
+polkadot_tasks_polling_duration_bucket{task_name="grandpa-voter",le="0.001"} 10078265
+polkadot_tasks_polling_duration_bucket{task_name="grandpa-voter",le="0.004"} 10305177
+polkadot_tasks_polling_duration_bucket{task_name="grandpa-voter",le="0.016"} 10321575
+polkadot_tasks_polling_duration_bucket{task_name="grandpa-voter",le="0.064"} 10342922
+polkadot_tasks_polling_duration_bucket{task_name="grandpa-voter",le="0.256"} 10343807
+polkadot_tasks_polling_duration_bucket{task_name="grandpa-voter",le="1.024"} 10343808
+polkadot_tasks_polling_duration_bucket{task_name="grandpa-voter",le="4.096"} 10343808
+polkadot_tasks_polling_duration_bucket{task_name="grandpa-voter",le="16.384"} 10343808
+polkadot_tasks_polling_duration_bucket{task_name="grandpa-voter",le="65.536"} 10343808
+polkadot_tasks_polling_duration_bucket{task_name="grandpa-voter",le="+Inf"} 10343808
+polkadot_tasks_polling_duration_sum{task_name="grandpa-voter"} 1736.9619419495705
+polkadot_tasks_polling_duration_count{task_name="grandpa-voter"} 10343808
+polkadot_tasks_polling_duration_bucket{task_name="import-queue-worker",le="0.001"} 232726
+polkadot_tasks_polling_duration_bucket{task_name="import-queue-worker",le="0.004"} 232733
+polkadot_tasks_polling_duration_bucket{task_name="import-queue-worker",le="0.016"} 232738
+polkadot_tasks_polling_duration_bucket{task_name="import-queue-worker",le="0.064"} 243528
+polkadot_tasks_polling_duration_bucket{task_name="import-queue-worker",le="0.256"} 248828
+polkadot_tasks_polling_duration_bucket{task_name="import-queue-worker",le="1.024"} 248942
+polkadot_tasks_polling_duration_bucket{task_name="import-queue-worker",le="4.096"} 248969
+polkadot_tasks_polling_duration_bucket{task_name="import-queue-worker",le="16.384"} 248969
+polkadot_tasks_polling_duration_bucket{task_name="import-queue-worker",le="65.536"} 248969
+polkadot_tasks_polling_duration_bucket{task_name="import-queue-worker",le="+Inf"} 248969
+polkadot_tasks_polling_duration_sum{task_name="import-queue-worker"} 1126.2750473919716
+polkadot_tasks_polling_duration_count{task_name="import-queue-worker"} 248969
+polkadot_tasks_polling_duration_bucket{task_name="libp2p-node",le="0.001"} 23977997
+polkadot_tasks_polling_duration_bucket{task_name="libp2p-node",le="0.004"} 23986631
+polkadot_tasks_polling_duration_bucket{task_name="libp2p-node",le="0.016"} 23988165
+polkadot_tasks_polling_duration_bucket{task_name="libp2p-node",le="0.064"} 23988343
+polkadot_tasks_polling_duration_bucket{task_name="libp2p-node",le="0.256"} 23988343
+polkadot_tasks_polling_duration_bucket{task_name="libp2p-node",le="1.024"} 23988343
+polkadot_tasks_polling_duration_bucket{task_name="libp2p-node",le="4.096"} 23988343
+polkadot_tasks_polling_duration_bucket{task_name="libp2p-node",le="16.384"} 23988343
+polkadot_tasks_polling_duration_bucket{task_name="libp2p-node",le="65.536"} 23988343
+polkadot_tasks_polling_duration_bucket{task_name="libp2p-node",le="+Inf"} 23988343
+polkadot_tasks_polling_duration_sum{task_name="libp2p-node"} 1968.6804283196705
+polkadot_tasks_polling_duration_count{task_name="libp2p-node"} 23988343
+polkadot_tasks_polling_duration_bucket{task_name="network-worker",le="0.001"} 10197716
+polkadot_tasks_polling_duration_bucket{task_name="network-worker",le="0.004"} 10756139
+polkadot_tasks_polling_duration_bucket{task_name="network-worker",le="0.016"} 10817950
+polkadot_tasks_polling_duration_bucket{task_name="network-worker",le="0.064"} 10820889
+polkadot_tasks_polling_duration_bucket{task_name="network-worker",le="0.256"} 10820897
+polkadot_tasks_polling_duration_bucket{task_name="network-worker",le="1.024"} 10820897
+polkadot_tasks_polling_duration_bucket{task_name="network-worker",le="4.096"} 10820900
+polkadot_tasks_polling_duration_bucket{task_name="network-worker",le="16.384"} 10820900
+polkadot_tasks_polling_duration_bucket{task_name="network-worker",le="65.536"} 10820900
+polkadot_tasks_polling_duration_bucket{task_name="network-worker",le="+Inf"} 10820900
+polkadot_tasks_polling_duration_sum{task_name="network-worker"} 3997.2126788525616
+polkadot_tasks_polling_duration_count{task_name="network-worker"} 10820900
+polkadot_tasks_polling_duration_bucket{task_name="prometheus-endpoint",le="0.001"} 1
+polkadot_tasks_polling_duration_bucket{task_name="prometheus-endpoint",le="0.004"} 1
+polkadot_tasks_polling_duration_bucket{task_name="prometheus-endpoint",le="0.016"} 1
+polkadot_tasks_polling_duration_bucket{task_name="prometheus-endpoint",le="0.064"} 3
+polkadot_tasks_polling_duration_bucket{task_name="prometheus-endpoint",le="0.256"} 3
+polkadot_tasks_polling_duration_bucket{task_name="prometheus-endpoint",le="1.024"} 3
+polkadot_tasks_polling_duration_bucket{task_name="prometheus-endpoint",le="4.096"} 3
+polkadot_tasks_polling_duration_bucket{task_name="prometheus-endpoint",le="16.384"} 3
+polkadot_tasks_polling_duration_bucket{task_name="prometheus-endpoint",le="65.536"} 3
+polkadot_tasks_polling_duration_bucket{task_name="prometheus-endpoint",le="+Inf"} 3
+polkadot_tasks_polling_duration_sum{task_name="prometheus-endpoint"} 0.048609132
+polkadot_tasks_polling_duration_count{task_name="prometheus-endpoint"} 3
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-on-block",le="0.001"} 2763
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-on-block",le="0.004"} 2764
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-on-block",le="0.016"} 2764
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-on-block",le="0.064"} 2764
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-on-block",le="0.256"} 2764
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-on-block",le="1.024"} 2764
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-on-block",le="4.096"} 2764
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-on-block",le="16.384"} 2764
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-on-block",le="65.536"} 2764
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-on-block",le="+Inf"} 2764
+polkadot_tasks_polling_duration_sum{task_name="telemetry-on-block"} 0.05570195800000013
+polkadot_tasks_polling_duration_count{task_name="telemetry-on-block"} 2764
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-network-state",le="0.001"} 2490
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-network-state",le="0.004"} 2539
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-network-state",le="0.016"} 2540
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-network-state",le="0.064"} 2540
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-network-state",le="0.256"} 2540
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-network-state",le="1.024"} 2540
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-network-state",le="4.096"} 2540
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-network-state",le="16.384"} 2540
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-network-state",le="65.536"} 2540
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-network-state",le="+Inf"} 2540
+polkadot_tasks_polling_duration_sum{task_name="telemetry-periodic-network-state"} 0.8926349730000009
+polkadot_tasks_polling_duration_count{task_name="telemetry-periodic-network-state"} 2540
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-send",le="0.001"} 1
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-send",le="0.004"} 1
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-send",le="0.016"} 14782
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-send",le="0.064"} 15230
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-send",le="0.256"} 15231
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-send",le="1.024"} 15231
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-send",le="4.096"} 15231
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-send",le="16.384"} 15231
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-send",le="65.536"} 15231
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-periodic-send",le="+Inf"} 15231
+polkadot_tasks_polling_duration_sum{task_name="telemetry-periodic-send"} 159.16155961099932
+polkadot_tasks_polling_duration_count{task_name="telemetry-periodic-send"} 15231
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-worker",le="0.001"} 75231
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-worker",le="0.004"} 76436
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-worker",le="0.016"} 76456
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-worker",le="0.064"} 76459
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-worker",le="0.256"} 76459
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-worker",le="1.024"} 76459
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-worker",le="4.096"} 76459
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-worker",le="16.384"} 76459
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-worker",le="65.536"} 76459
+polkadot_tasks_polling_duration_bucket{task_name="telemetry-worker",le="+Inf"} 76459
+polkadot_tasks_polling_duration_sum{task_name="telemetry-worker"} 11.013010908000014
+polkadot_tasks_polling_duration_count{task_name="telemetry-worker"} 76459
+polkadot_tasks_polling_duration_bucket{task_name="txpool-and-offchain-notif",le="0.001"} 26405
+polkadot_tasks_polling_duration_bucket{task_name="txpool-and-offchain-notif",le="0.004"} 26408
+polkadot_tasks_polling_duration_bucket{task_name="txpool-and-offchain-notif",le="0.016"} 26409
+polkadot_tasks_polling_duration_bucket{task_name="txpool-and-offchain-notif",le="0.064"} 26409
+polkadot_tasks_polling_duration_bucket{task_name="txpool-and-offchain-notif",le="0.256"} 26409
+polkadot_tasks_polling_duration_bucket{task_name="txpool-and-offchain-notif",le="1.024"} 26409
+polkadot_tasks_polling_duration_bucket{task_name="txpool-and-offchain-notif",le="4.096"} 26409
+polkadot_tasks_polling_duration_bucket{task_name="txpool-and-offchain-notif",le="16.384"} 26409
+polkadot_tasks_polling_duration_bucket{task_name="txpool-and-offchain-notif",le="65.536"} 26409
+polkadot_tasks_polling_duration_bucket{task_name="txpool-and-offchain-notif",le="+Inf"} 26409
+polkadot_tasks_polling_duration_sum{task_name="txpool-and-offchain-notif"} 0.7628598640000025
+polkadot_tasks_polling_duration_count{task_name="txpool-and-offchain-notif"} 26409
+polkadot_tasks_polling_duration_bucket{task_name="txpool-background",le="0.001"} 397411
+polkadot_tasks_polling_duration_bucket{task_name="txpool-background",le="0.004"} 397424
+polkadot_tasks_polling_duration_bucket{task_name="txpool-background",le="0.016"} 397432
+polkadot_tasks_polling_duration_bucket{task_name="txpool-background",le="0.064"} 397432
+polkadot_tasks_polling_duration_bucket{task_name="txpool-background",le="0.256"} 397432
+polkadot_tasks_polling_duration_bucket{task_name="txpool-background",le="1.024"} 397432
+polkadot_tasks_polling_duration_bucket{task_name="txpool-background",le="4.096"} 397432
+polkadot_tasks_polling_duration_bucket{task_name="txpool-background",le="16.384"} 397432
+polkadot_tasks_polling_duration_bucket{task_name="txpool-background",le="65.536"} 397432
+polkadot_tasks_polling_duration_bucket{task_name="txpool-background",le="+Inf"} 397432
+polkadot_tasks_polling_duration_sum{task_name="txpool-background"} 12.372150134999933
+polkadot_tasks_polling_duration_count{task_name="txpool-background"} 397432
+polkadot_tasks_polling_duration_bucket{task_name="txpool-maintain",le="0.001"} 25891
+polkadot_tasks_polling_duration_bucket{task_name="txpool-maintain",le="0.004"} 31778
+polkadot_tasks_polling_duration_bucket{task_name="txpool-maintain",le="0.016"} 31819
+polkadot_tasks_polling_duration_bucket{task_name="txpool-maintain",le="0.064"} 31820
+polkadot_tasks_polling_duration_bucket{task_name="txpool-maintain",le="0.256"} 31820
+polkadot_tasks_polling_duration_bucket{task_name="txpool-maintain",le="1.024"} 31820
+polkadot_tasks_polling_duration_bucket{task_name="txpool-maintain",le="4.096"} 31820
+polkadot_tasks_polling_duration_bucket{task_name="txpool-maintain",le="16.384"} 31820
+polkadot_tasks_polling_duration_bucket{task_name="txpool-maintain",le="65.536"} 31820
+polkadot_tasks_polling_duration_bucket{task_name="txpool-maintain",le="+Inf"} 31820
+polkadot_tasks_polling_duration_sum{task_name="txpool-maintain"} 13.874151350999925
+polkadot_tasks_polling_duration_count{task_name="txpool-maintain"} 31820
+polkadot_tasks_polling_duration_bucket{task_name="unamed",le="0.001"} 39091771
+polkadot_tasks_polling_duration_bucket{task_name="unamed",le="0.004"} 39092527
+polkadot_tasks_polling_duration_bucket{task_name="unamed",le="0.016"} 39092827
+polkadot_tasks_polling_duration_bucket{task_name="unamed",le="0.064"} 39092904
+polkadot_tasks_polling_duration_bucket{task_name="unamed",le="0.256"} 39092904
+polkadot_tasks_polling_duration_bucket{task_name="unamed",le="1.024"} 39092904
+polkadot_tasks_polling_duration_bucket{task_name="unamed",le="4.096"} 39092904
+polkadot_tasks_polling_duration_bucket{task_name="unamed",le="16.384"} 39092904
+polkadot_tasks_polling_duration_bucket{task_name="unamed",le="65.536"} 39092904
+polkadot_tasks_polling_duration_bucket{task_name="unamed",le="+Inf"} 39092904
+polkadot_tasks_polling_duration_sum{task_name="unamed"} 201.72497975732475
+polkadot_tasks_polling_duration_count{task_name="unamed"} 39092904
+polkadot_tasks_polling_duration_bucket{task_name="unnamed",le="0.001"} 29623
+polkadot_tasks_polling_duration_bucket{task_name="unnamed",le="0.004"} 29646
+polkadot_tasks_polling_duration_bucket{task_name="unnamed",le="0.016"} 29671
+polkadot_tasks_polling_duration_bucket{task_name="unnamed",le="0.064"} 29675
+polkadot_tasks_polling_duration_bucket{task_name="unnamed",le="0.256"} 29675
+polkadot_tasks_polling_duration_bucket{task_name="unnamed",le="1.024"} 29675
+polkadot_tasks_polling_duration_bucket{task_name="unnamed",le="4.096"} 29675
+polkadot_tasks_polling_duration_bucket{task_name="unnamed",le="16.384"} 29675
+polkadot_tasks_polling_duration_bucket{task_name="unnamed",le="65.536"} 29675
+polkadot_tasks_polling_duration_bucket{task_name="unnamed",le="+Inf"} 29675
+polkadot_tasks_polling_duration_sum{task_name="unnamed"} 2.0316557990000077
+polkadot_tasks_polling_duration_count{task_name="unnamed"} 29675
+# HELP polkadot_tasks_polling_started_total Total number of times we started invoking Future::poll
+# TYPE polkadot_tasks_polling_started_total counter
+polkadot_tasks_polling_started_total{task_name="extrinsic-import"} 50399
+polkadot_tasks_polling_started_total{task_name="grandpa-voter"} 10343808
+polkadot_tasks_polling_started_total{task_name="import-queue-worker"} 248969
+polkadot_tasks_polling_started_total{task_name="libp2p-node"} 23988343
+polkadot_tasks_polling_started_total{task_name="network-worker"} 10820900
+polkadot_tasks_polling_started_total{task_name="prometheus-endpoint"} 3
+polkadot_tasks_polling_started_total{task_name="telemetry-on-block"} 2764
+polkadot_tasks_polling_started_total{task_name="telemetry-periodic-network-state"} 2540
+polkadot_tasks_polling_started_total{task_name="telemetry-periodic-send"} 15231
+polkadot_tasks_polling_started_total{task_name="telemetry-worker"} 76459
+polkadot_tasks_polling_started_total{task_name="txpool-and-offchain-notif"} 26409
+polkadot_tasks_polling_started_total{task_name="txpool-background"} 397432
+polkadot_tasks_polling_started_total{task_name="txpool-maintain"} 31820
+polkadot_tasks_polling_started_total{task_name="unamed"} 39092904
+polkadot_tasks_polling_started_total{task_name="unnamed"} 29675
+# HELP polkadot_tasks_spawned_total Total number of tasks that have been spawned on the Service
+# TYPE polkadot_tasks_spawned_total counter
+polkadot_tasks_spawned_total{task_name="extrinsic-import"} 27158
+polkadot_tasks_spawned_total{task_name="grandpa-voter"} 1
+polkadot_tasks_spawned_total{task_name="import-queue-worker"} 1
+polkadot_tasks_spawned_total{task_name="libp2p-node"} 10318
+polkadot_tasks_spawned_total{task_name="network-worker"} 1
+polkadot_tasks_spawned_total{task_name="prometheus-endpoint"} 1
+polkadot_tasks_spawned_total{task_name="telemetry-on-block"} 1
+polkadot_tasks_spawned_total{task_name="telemetry-periodic-network-state"} 1
+polkadot_tasks_spawned_total{task_name="telemetry-periodic-send"} 1
+polkadot_tasks_spawned_total{task_name="telemetry-worker"} 1
+polkadot_tasks_spawned_total{task_name="txpool-and-offchain-notif"} 1
+polkadot_tasks_spawned_total{task_name="txpool-background"} 1
+polkadot_tasks_spawned_total{task_name="txpool-maintain"} 28773
+polkadot_tasks_spawned_total{task_name="unamed"} 251
+polkadot_tasks_spawned_total{task_name="unnamed"} 58
+# HELP polkadot_threads Number of threads used by the process
+# TYPE polkadot_threads gauge
+polkadot_threads 26
+# HELP polkadot_tokio_threads_alive Number of threads alive right now
+# TYPE polkadot_tokio_threads_alive gauge
+polkadot_tokio_threads_alive 3
+# HELP polkadot_tokio_threads_total Total number of threads created
+# TYPE polkadot_tokio_threads_total counter
+polkadot_tokio_threads_total 3

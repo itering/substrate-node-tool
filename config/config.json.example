@@ -5,15 +5,28 @@
     "session_key": "glue",
     "debug": true
   },
-  "substrate": {
-    "id": "holy",
-    "network": "darwinia",
-    "image": "darwinianetwork/darwinia:release-v0.6.0",
-    "node_key": "0x46e06a6d52fe3508babe698fca9e403bebb09059d2e0bd64d174bc6c114b3557",
-    "port": 20222,
-    "base_path": "opts/darwinia-ops/data",
-    "auto_use_latest":"false",
-    "validator": false,
-    "boot_nodes": []
-  }
+  "substrate": [
+    {
+      "id": "darwinia-ops1",
+      "network": "darwinia",
+      "image": "darwinianetwork/darwinia:release-v0.6.0",
+      "base_path": "opts/darwinia-ops/data",
+      "auto_use_latest": "true",
+      "validator": false,
+      "prometheus_metrics": "darwinia_block_height{status=\"best\"}",
+      "ws_port": 9944,
+      "prometheus_port": 9615
+    },
+    {
+      "id": "kusama-ops1",
+      "network": "kusama",
+      "image": "polkasource/substrate-client:kusama-latest",
+      "base_path": "opts/darwinia-ops/data",
+      "auto_use_latest": "true",
+      "validator": false,
+      "prometheus_metrics": "polkadot_block_height{status=\"best\"}",
+      "ws_port": 9944,
+      "prometheus_port": 9619
+    }
+  ]
 }

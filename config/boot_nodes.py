@@ -1,6 +1,3 @@
-from websocket import create_connection
-import ssl
-
 import requests
 from multiprocessing.dummy import Pool
 from multiprocessing import Queue
@@ -10,31 +7,26 @@ import threading
 class Boot:
     def __init__(self):
         self.queue = Queue()
-        self.pool = Pool(30)
         self.urls = []
         self.network = ""
+        self.pool = None
 
         self.network_dict = {
             "": "Crab",
-            "kusama": "Kusama CC3",
+            "kusama": "Kusama",
+            "polkadot": "Polkadot CC1",
+            "edgeware": "Edgeware",
             "darwinia": "Crab"
         }
 
     def run(self, network):
+        self.pool = Pool(30)
         self.network = network
-        ws = create_connection('wss://telemetry.polkadot.io/feed/',
-                               sslopt={"cert_reqs": ssl.CERT_NONE,
-                                       "check_hostname": False,
-                                       "ssl_version": ssl.PROTOCOL_TLSv1})
-
-        subscribe_topic = "subscribe:%s" % self.network_dict[network]
-        ws.send(subscribe_topic)
-
         t = threading.Thread()
         t.setDaemon(True)
         t.start()
 
-        self.pool.map(self._put_queue, list(range(0, 50)))
+        self.pool.map(self._put_queue, list(range(0, 20)))
         while self.queue.empty() is False:
             node_id = self.queue.get()
             self.pool.map_async(self._get_url, [node_id])

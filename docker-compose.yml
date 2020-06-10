@@ -4,8 +4,6 @@ services:
   ops:
     build: .
     image: darwinianetwork/ops
-    environment:
-      CLIENT_NODE_PORT: 20222
     volumes:
       - ./config/config.json:/app/config.json
       - /var/run/docker.sock:/var/run/docker.sock

@@ -21,16 +21,22 @@ schema = {
             "required": ["pid", "monitor_interval", "session_key"]
         },
         "substrate": {
-            "type": "object",
+            "type": "array",
             "properties": {
                 "id": {"type": "string", "minLength": 1},
                 "image": {"type": "string", "minLength": 1},
                 "network": {"type": "string", "minLength": 1},
                 "port": {"type": "number"},
                 "base_path": {"type": "string"},
-                "validator": {"type": "boolean"}
+                "prometheus_metrics": {"type": "string"},
+                "validator": {"type": "boolean"},
+                "ws_port": {"type": "number"},
+                "prometheus_port": {"type": "number"},
             },
-            "required": ["image", "id", "port", "network", "base_path", "validator"]
+            "required": ["image", "id", "network", "base_path", "validator",
+                         "prometheus_metrics",
+                         "ws_port",
+                         "prometheus_port"]
         },
     },
 }
@@ -40,7 +46,7 @@ def read_cfg(_cfg):
     if not os.path.exists(_cfg):
         raise OSError('%s not find' % _cfg)
     conf = check_and_read_config(_cfg)
-    return merge_env_with_conf(conf)
+    return conf
 
 
 def check_and_read_config(_cfg):
@@ -48,24 +54,12 @@ def check_and_read_config(_cfg):
         try:
             conf = json.load(fb)
         except (json.JSONDecodeError, TypeError, ValueError):
+            print("fff")
             raise OSError('Read %s json file error' % _cfg)
         validate(instance=conf, schema=schema)
         if type(conf) != dict:
             raise RuntimeError("cfg not dict")
         return conf
-
-
-def merge_env_with_conf(conf):
-    if "CLIENT_NODE_NAME" in os.environ:
-        conf["substrate"]["id"] = os.getenv("CLIENT_NODE_NAME")
-    if "CLIENT_NODE_PORT" in os.environ:
-        conf["substrate"]["port"] = int(os.getenv("CLIENT_NODE_PORT"))
-    if "CLIENT_NODE_KEY" in os.environ:
-        conf["substrate"]["node_key"] = os.getenv("CLIENT_NODE_KEY")
-    if "CLIENT_VALIDATOR" in os.environ:
-        conf["substrate"]["validator"] = os.getenv("CLIENT_VALIDATOR") == "true"
-    conf["substrate"]["node_key"] = trim_hex(conf["substrate"]["node_key"])
-    return conf
 
 
 def trim_hex(s):
@@ -77,12 +71,9 @@ def trim_hex(s):
 def auto_insert_boot_nodes(_cfg):
     print("Start discover boot_nodes")
     boot = boot_nodes.Boot()
-    try:
-        nodes = boot.run(_cfg["substrate"]["network"])
-        _cfg["substrate"]["boot_nodes"].extend(nodes)
-    except:
-        print("from telemetry get boot_nodes error")
-    _cfg["substrate"]["boot_nodes"] = unique_boot_node(_cfg["substrate"]["boot_nodes"])
+    for i in range(len(_cfg["substrate"])):
+        nodes = boot.run(_cfg["substrate"][i]["network"])
+        _cfg["substrate"][i]["boot_nodes"] = unique_boot_node(nodes)
     return _cfg
 
 
