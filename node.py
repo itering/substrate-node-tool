@@ -17,11 +17,6 @@ class Monitor(multiprocessing.Process):
     _app_cfg = None
     _app_docker_client = None
     _app_docker_instance = {}
-    _app_status = {
-        "id": None,
-        "status": "stop",
-        "heartbeat": 0,
-    }
     last_block_num = 0
     prometheus_host = "127.0.0.1"
 
@@ -45,7 +40,7 @@ class Monitor(multiprocessing.Process):
         self._app_cfg = val
 
     def _send_message(self):
-        # todo 发送报警
+        # todo send alert
         pass
 
     def _d(self, msg):
@@ -185,13 +180,13 @@ class Monitor(multiprocessing.Process):
 
     def _app_is_validator_working(self, node):
 
+        prometheus_host = '127.0.0.1'
         if os.getenv("DOCKER_MODE") == "True":
             prometheus_host = node['id']
-        else:
-            prometheus_host = '127.0.0.1'
 
         try:
-            url = "http://{prometheus}:9615/metrics".format(prometheus=prometheus_host)
+            url = "http://{prometheus}:{prometheus_port}/metrics".format(prometheus=prometheus_host,
+                                                                         prometheus_port=node["prometheus_port"])
             metrics = requests.get(url).text.split("\n")
             current = 0
             for index, v in enumerate(metrics):

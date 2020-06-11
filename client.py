@@ -37,15 +37,6 @@ def stop(ctx):
     stop_daemon(ctx.obj['pid'])
 
 
-@cli.command()
-@click.pass_context
-def restart(ctx):
-    stop_daemon(ctx.obj['pid'])
-    print("Ready to start ....")
-    time.sleep(3)
-    start_daemon(ctx.obj['pid'], ctx.obj['cfg'])
-
-
 def sigterm_handler(signum, frame):
     print('try to stop %s' % glue.pid)
     sys.stdout.flush()
@@ -92,4 +83,3 @@ if __name__ == '__main__':
     cli(obj={})
     cli.add_command(start)
     cli.add_command(stop)
-    cli.add_command(restart)

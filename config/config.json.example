@@ -1,7 +1,6 @@
 {
   "global": {
     "pid": "/tmp/glue.pid",
-    "monitor_interval": 1,
     "session_key": "glue",
     "debug": true
   },

@@ -14,11 +14,10 @@ schema = {
             "type": "object",
             "properties": {
                 "pid": {"type": "string", "minLength": 1},
-                "monitor_interval": {"type": "number"},
                 "session_key": {"type": "string", "minLength": 1},
                 "debug": {"type": "boolean"},
             },
-            "required": ["pid", "monitor_interval", "session_key"]
+            "required": ["pid", "session_key"]
         },
         "substrate": {
             "type": "array",
@@ -33,9 +32,7 @@ schema = {
                 "ws_port": {"type": "number"},
                 "prometheus_port": {"type": "number"},
             },
-            "required": ["image", "id", "network", "base_path", "validator",
-                         "prometheus_metrics",
-                         "ws_port",
+            "required": ["image", "id", "network", "base_path", "validator", "prometheus_metrics", "ws_port",
                          "prometheus_port"]
         },
     },
@@ -54,11 +51,11 @@ def check_and_read_config(_cfg):
         try:
             conf = json.load(fb)
         except (json.JSONDecodeError, TypeError, ValueError):
-            print("fff")
             raise OSError('Read %s json file error' % _cfg)
         validate(instance=conf, schema=schema)
         if type(conf) != dict:
             raise RuntimeError("cfg not dict")
+        check_unique_column(conf, ["id", "ws_port", "prometheus_port"])
         return conf
 
 
@@ -101,3 +98,15 @@ def check_image_latest_version(_cfg):
     except Exception as e:
         print(e)
     return _cfg
+
+
+def check_unique_column(_cfg, columns):
+    def check(column):
+        unique = []
+        for node in _cfg["substrate"]:
+            if node[column] not in unique:
+                unique.append(node[column])
+            else:
+                raise KeyError("duplicate key {column}".format(column=column))
+
+    list(map(lambda x: check(x), columns))
