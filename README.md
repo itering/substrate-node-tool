@@ -1,17 +1,17 @@
-# substrate Ops Tools
+# Substrate Node Tools
 
-## 特性
+## Feature
 
-- docker 容器一键部署
-- 节点启动自动获取所有bootnodes
-- 遇到节点同步问题自动重启
-- 可自动检测最新的节点docker images
-- 可接入WebHook 进行 alert 报警
-- 支持同时启动多节点
+- One-click deployment of docker containers
+- Node start automatically get all bootnodes
+- Automatic restart when encountering node synchronization problem
+- Automatically detect the latest node docker images
+- Can access WebHook for alert
+- Support to start multiple nodes at the same time
 
-## 配置
+## Configure
 
-配置python 虚拟环境
+### Configure python virtual environment
 
 ```bash
 python3 -m pip install --user virtualenv
@@ -20,13 +20,11 @@ python3 -m venv venv
 pip install -r requirements.txt
 ```
 
-修改配置文件
+### Modify configuration file
 
 ```bash
 cp config.json.example config.json
 ```
-
-配置内容
 
 ```json
 {
@@ -67,34 +65,34 @@ cp config.json.example config.json
 
 > global:
 
-- pid: 主进程存放的pid文件
-- session_key: session锁的key，核心配置
+- pid: The pid file stored by the main process
+- session_key: key for session lock, core configuration
 
 
 > substrate
 
-- id: 当前节点的id，唯一
-- image: docker镜像
-- base_path: 数据保存路径
-- node_key(可选): 节点启动后唯一标示符(ed25519)
-- validator: 是否跑验证人节点
-- auto_use_latest: 是否使用最新tag的image  
-- prometheus_metrics: 监听指标，通过该指标判断当前节点同步状况
-- port(可选): p2p网络运行端口(唯一)
-- ws_port： websocket 端口(唯一)
-- prometheus_port： prometheus 端口(唯一)
+- id: the id of the current node, unique
+- image: docker image
+- base_path: data storage path
+- node_key (optional): unique identifier after node startup (ed25519)
+- validator: whether to run the validator node
+- auto_use_latest: whether to use the latest tag image
+- prometheus_metrics: monitor metrics, use this to determine the current node synchronization status
+- port (optional): p2p network operation port (only)
+- ws_port: websocket port (only)
+- prometheus_port: prometheus port (only)
 
-## 启动进程
+## Start the process
 
     $ python client.py start
 
 
-## 关闭进程
+## Close process
 
     $ python client.py stop
     
 
-## 系统输出的日志
+## System output log
 
 - stdout: /tmp/glue_stdout.log
 - stderr: /tmp/glue_stderr.log
@@ -106,7 +104,7 @@ cp config.json.example config.json
 
 https://docs.docker.com/compose/install/
     
-Linux系统(CentOS与Ubuntu)可以用脚本一键安装
+Linux systems (CentOS and Ubuntu) can be installed with one-click script
     
     ```
     curl -sSL https://gitee.com/x2x4/mytools/raw/master/install_docker.sh | sudo bash
@@ -122,8 +120,8 @@ Linux系统(CentOS与Ubuntu)可以用脚本一键安装
     docker-compose down
 
 
-## 建议的方案
+## Suggested solution
 
-1. 如果遇到连不上节点，很大程度因为网络问题，重启或者在同一台区域的服务器进行部署多台都不会是好方案, 为避免这个情况，建议设置尽可能多的 boot_nodes 以及在不同区域的网络中部署
-2. centOs部署的节点，内存占用和cpu占用明显比在ubuntu的低很多
-3. 若在telemetry没有看到自己的节点或者当前块高不正常，不一定就是节点未启动成功或者是同步不正常，有可能是telemetry显示问题
+1. If you encounter unreachable nodes, it is not a good solution to restart or deploy multiple servers in the same area because of network problems. To avoid this situation, it is recommended to set as many boot_nodes as possible and Deploy in networks in different regions
+2. Nodes deployed by centOs have significantly lower memory usage and CPU usage than those on ubuntu
+3. If you do not see your own node in telemetry or the current block height is abnormal, it may not necessarily mean that the node did not start successfully or the synchronization is abnormal, it may be a telemetry display problem
