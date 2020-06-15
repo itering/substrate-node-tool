@@ -14,10 +14,11 @@ schema = {
             "type": "object",
             "properties": {
                 "pid": {"type": "string", "minLength": 1},
+                "monitor_interval": {"type": "number"},
                 "session_key": {"type": "string", "minLength": 1},
                 "debug": {"type": "boolean"},
             },
-            "required": ["pid", "session_key"]
+            "required": ["pid", "session_key", "monitor_interval"]
         },
         "substrate": {
             "type": "array",
