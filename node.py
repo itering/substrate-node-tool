@@ -149,7 +149,7 @@ class Monitor(multiprocessing.Process):
         )
 
         if node['validator']:
-            command = command + " --validator --unsafe-rpc-external --unsafe-ws-external"
+            command = command + " --validator --unsafe-rpc-external --unsafe-ws-external --rpc-methods Unsafe"
         else:
             # --rpc-external and --ws-external options shouldn\'t be used if the node is running as a validator.
             # Use `--unsafe-rpc-external` if you understand the risks.
